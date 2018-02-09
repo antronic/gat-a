@@ -31,7 +31,7 @@ export default ({ quiz }) => (
     <View style={{
       width: '90%',
       backgroundColor: '#ffffff',
-      borderRadius: 20,
+      borderRadius: 10,
       padding: 20,
       alignSelf: 'center',
     }}>
