@@ -5,7 +5,14 @@ import {
   View,
 } from 'react-native';
 
-const NavButton = ({ value }) => (
+import { connect } from 'react-redux';
+
+import {
+  goBackQuiz,
+  goNextQuiz,
+} from '../../ducks/app';
+
+const NavButton = ({ action, value }) => (
   <TouchableOpacity activeOpacity={0.8} style={{
     // flex: 1,
     backgroundColor: '#fff',
@@ -16,10 +23,10 @@ const NavButton = ({ value }) => (
     height: 70,
     marginLeft: 20,
     marginRight: 20,
-    // marginBottom: 40,
-  }}>
+  }} onPress={action}>
     <Text style={{
-      fontSize: 42,
+      fontSize: 28,
+      fontWeight: 'bold',
     }}>{value}</Text>
   </TouchableOpacity>
 );
@@ -37,7 +44,7 @@ const SubmitButton = () => (
   </TouchableOpacity>
 );
 
-const Navigation = () => (
+const Navigation = ({ goBackQuiz, goNextQuiz, currentIndex, quizSize  }) => (
   <View style={{
     flex: 2,
     width: '100%',
@@ -45,15 +52,36 @@ const Navigation = () => (
     alignItems: 'center',
     flexDirection: 'row',
   }}>
-    <NavButton type="back" value="<"/>
+
+    <View style={{
+      flex: 1,
+      alignItems: 'flex-start',
+    }}>
+      {
+        currentIndex > 0 && ( <NavButton type="back" action={goBackQuiz} value="<"/> )
+      }
+    </View>
+
     <View style={{
       flex: 1,
       alignItems: 'center',
     }}>
       <SubmitButton/>
     </View>
-    <NavButton type="next" value=">"/>
+
+    <View style={{
+      flex: 1,
+      alignItems: 'flex-end',
+    }}>
+      {
+        currentIndex < quizSize - 1 && ( <NavButton type="next" action={goNextQuiz} value=">"/> )
+      }
+    </View>
   </View>
 );
 
-export default Navigation;
+const mapStateToProps = state => ({
+  currentIndex: state.app.currentIndex,
+});
+
+export default connect(mapStateToProps, { goNextQuiz, goBackQuiz })(Navigation);

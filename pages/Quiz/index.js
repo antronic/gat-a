@@ -29,7 +29,7 @@ const QuizPage = ({ quizes, currentIndex }) => (
   <View>
     <Top quizSize={quizes.length}/>
     <MainScreen quiz={quizes[currentIndex]}/>
-    <Navigation/>
+    <Navigation quizSize={quizes.length}/>
   </View>
 );
 

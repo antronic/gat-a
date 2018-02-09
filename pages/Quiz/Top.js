@@ -16,12 +16,12 @@ const Top = ({ currentIndex, quizSize }) => (
   }}>
     <Bar style={{
       marginBottom: 10,
-    }} progress={ currentIndex / quizSize} width={200} color="#fff" />
+    }} progress={ currentIndex / (quizSize - 1)} width={200} color="#fff" />
     <Text style={{
       fontSize: 22,
       fontWeight: 'bold',
       color: '#fff',
-    }}>{currentIndex} / {quizSize}</Text>
+    }}>{currentIndex + 1} / {quizSize}</Text>
   </View>
 );
 

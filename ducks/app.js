@@ -22,14 +22,19 @@ const APP = createAction('APP');
 export const SET_ANSWER = APP('SET_ANSWER');
 export const SET_QUIZ_INDEX = APP('SET_QUIZ_INDEX');
 
+export const GO_BACK_QUIZ = APP('GO_BACK_QUIZ');
+export const GO_NEXT_QUIZ = APP('GO_NEXT_QUIZ');
+
 export const SET_QUIZES = APP('SET_QUIZES');
 
 export const RESET_ANSWER = APP('RESET_ANSWER');
 
 export const setAnswer = Creator(SET_ANSWER);
-export const setQuizes = Creator(SET_QUIZES
-);
+export const setQuizes = Creator(SET_QUIZES);
 export const resetAnswer = Creator(RESET_ANSWER);
+
+export const goBackQuiz = Creator(GO_BACK_QUIZ);
+export const goNextQuiz = Creator(GO_NEXT_QUIZ);
 
 export const setQuizIndex = Creator(SET_QUIZ_INDEX);
 
@@ -49,7 +54,7 @@ const initial = {
   selectedAnswer: {},
   saveSolve: {},
 
-  currentIndex: 1,
+  currentIndex: 0,
   quizes: [],
 }
 
@@ -58,6 +63,16 @@ export default createReducer(initial, state => ({
     ...state,
     selectedAnswer: {},
   }),
+
+  [GO_BACK_QUIZ]: () => ({
+    ...state,
+    currentIndex: state.currentIndex - 1,
+  }),
+  [GO_NEXT_QUIZ]: () => ({
+    ...state,
+    currentIndex: state.currentIndex + 1,
+  }),
+
   [SET_ANSWER]: answer => ({
     ...state,
     selectedAnswer: {
