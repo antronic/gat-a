@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { withRouter } from 'react-router-dom';
+import { AndroidBackButton } from 'react-router-native';
 import { connect } from 'react-redux';
 
 import Top from './Top';
@@ -27,6 +28,7 @@ const MainScreen = ({ quiz }) => (
 
 const QuizPage = ({ history, quizes, currentIndex }) => (
   <View>
+    <AndroidBackButton/>
     <Top quizSize={quizes.length}/>
     <MainScreen quiz={quizes[currentIndex]}/>
     <Navigation history={history}/>
