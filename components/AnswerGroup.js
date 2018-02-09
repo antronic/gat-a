@@ -5,6 +5,12 @@ import { connect } from 'react-redux';
 
 import { setAnswer } from '../ducks/app';
 
+const decodeHtmlEntity = function(str) {
+  return str.replace(/&#(\d+);/g, function(match, dec) {
+    return String.fromCharCode(dec);
+  });
+};
+
 const AnswerButton = ({ index, onChoose, quizIndex, selected, text }) => {
   if (selected) {
     return (
@@ -21,7 +27,7 @@ const AnswerButton = ({ index, onChoose, quizIndex, selected, text }) => {
         <Text style={{
           fontSize: 15,
           color: '#fff',
-        }}>{ text }</Text>
+        }}>{ decodeURIComponent(text) }</Text>
       </View>
     );
   } else {
@@ -41,7 +47,7 @@ const AnswerButton = ({ index, onChoose, quizIndex, selected, text }) => {
           <Text style={{
             fontSize: 15,
             color: '#000',
-          }}>{ text }</Text>
+          }}>{ decodeURIComponent(text) }</Text>
         </View>
       </TouchableOpacity>
     );
