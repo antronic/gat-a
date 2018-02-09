@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "25.0.0"
+    "name": "MB English",
+    "icon": "./assets/logo_icon.png",
+    "version": "1.0.0",
+    "slug": "mb-english",
+    "sdkVersion": "25.0.0",
+    "ios": {
+      "bundleIdentifier": "com.jirachaichansivanon.mbenglish"
+    },
+    "android": {
+      "package": "com.jirachai_chansivanon.mbenglish"
+    }
   }
 }

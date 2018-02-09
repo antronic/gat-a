@@ -13,6 +13,8 @@ import {
   goNextQuiz,
 
   checkAnswers,
+  setQuizIndex,
+  resetAnswer,
 } from '../../ducks/app';
 
 const NavButton = ({ action, value }) => (
@@ -45,7 +47,11 @@ const SubmitButton = ({ history, quizes, selectedAnswer }) => (
   }} onPress={() => {
     const result = checkAnswers(quizes, selectedAnswer);
     Alert.alert('Your results', 'Your score is ' + result.score, [
-      {text: 'OK', onPress: () => history.replace('/')},
+      {text: 'OK', onPress: () => {
+        history.replace('/');
+        resetAnswer();
+        setQuizIndex(0);
+      }},
     ], { cancelable: false })
   }}>
     <Text style={{ color: '#4174c3', fontWeight: 'bold', fontSize: 22 }}>Submit</Text>
