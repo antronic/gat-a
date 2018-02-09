@@ -11,7 +11,7 @@ import {
   flatten
 } from './helper';
 
-import quizes from '../quizs.json';
+import quizes from '../quizs';
 
 
 const DEFAULT_QUIZ_AMOUNT = 31;

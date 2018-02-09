@@ -11,7 +11,7 @@ const renderQuiz = (quiz) => {
         <Text style={{
           fontWeight: 'bold',
           fontSize: 18,
-        }}>{quiz.question}</Text>
+        }}>{decodeURI(quiz.question)}</Text>
 
         <View style={{
           marginTop: 25,
