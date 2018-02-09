@@ -1,0 +1,57 @@
+[
+  {
+    "question": "A: Did you inform his secretary for the appointment cancellation?\nB: No,_____\nA: Of course, it's necessary to call them and confirm about the cancellation.",
+    "type": "choice",
+    "solve": 3,
+    "answers": [
+      "I wouldn't",
+      "I shouldn't",
+      "I don't feel like it",
+      "Should I?"
+    ]
+  },
+  {
+    "question": "2A: Did you inform his secretary for the appointment cancellation?\nB: No,_____\nA: Of course, it's necessary to call them and confirm about the cancellation.",
+    "type": "choice",
+    "solve": 3,
+    "answers": [
+      "I wouldn't",
+      "I shouldn't",
+      "I don't feel like it",
+      "Should I?"
+    ]
+  },
+  {
+    "question": "3A: Did you inform his secretary for the appointment cancellation?\nB: No,_____\nA: Of course, it's necessary to call them and confirm about the cancellation.",
+    "type": "choice",
+    "solve": 3,
+    "answers": [
+      "I wouldn't",
+      "I shouldn't",
+      "I don't feel like it",
+      "Should I?"
+    ]
+  },
+  {
+    "question": "4A: Did you inform his secretary for the appointment cancellation?\nB: No,_____\nA: Of course, it's necessary to call them and confirm about the cancellation.",
+    "type": "choice",
+    "solve": 3,
+    "answers": [
+      "I wouldn't",
+      "I shouldn't",
+      "I don't feel like it",
+      "Should I?"
+    ]
+  },
+  {
+    "question": "5A: Did you inform his secretary for the appointment cancellation?\nB: No,_____\nA: Of course, it's necessary to call them and confirm about the cancellation.",
+    "type": "choice",
+    "solve": 3,
+    "answers": [
+      "I wouldn't",
+      "I shouldn't",
+      "I don't feel like it",
+      "Should I?"
+    ]
+  },
+]

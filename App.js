@@ -1,11 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Constants} from "expo";
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import {
   LinearGradient
 } from 'expo';
 
+import {Provider} from 'react-redux';
+import store from './ducks';
+
 import Main from './pages/index';
 import Home from './pages/Home';
+import Quiz from './pages/Quiz';
 
 // react-native
 import {
@@ -14,23 +19,27 @@ import {
   Link,
 } from 'react-router-native'
 
-export default class App extends React.Component {
+const App = class App extends React.Component {
   render() {
     return (
-      <NativeRouter>
-        <View style={styles.container}>
-          <LinearGradient style={{
-            flex: 1,
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }} colors={['#416ec2', '#4db9d1']}>
+      <Provider store={store}>
+        <NativeRouter>
+          <View style={styles.container}>
+            <LinearGradient style={{
+              flex: 1,
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingTop: (Platform.OS === 'ios') ? 0 : Expo.Constants.statusBarHeight,
+            }} colors={['#416ec2', '#4db9d1']}>
 
-            <Route exact path="/" component={Main}/>
-            <Route path="/home" component={Home}/>
-          </LinearGradient>
-        </View>
-      </NativeRouter>
+              <Route exact path="/" component={Main}/>
+              <Route path="/home" component={Home}/>
+              <Route path="/quiz" component={Quiz}/>
+            </LinearGradient>
+          </View>
+        </NativeRouter>
+      </Provider>
     );
   }
 }
@@ -38,9 +47,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
 // #416ec2, #4db9d1)
+
+export default App;

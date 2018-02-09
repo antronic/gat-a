@@ -9,12 +9,3 @@ export default () => (
     <Text>Home</Text>
   </View>
 );
-
-//
-// export default class Home extends React.Component {
-//   render() {
-//     return (
-//       <Text>Test</Text>
-//     )
-//   }
-// }

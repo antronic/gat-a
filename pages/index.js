@@ -2,20 +2,31 @@ import React from 'react';
 import {
   View,
   Text,
+  TouchableOpacity,
   Button,
   Image,
 } from 'react-native';
-
 import {
-  Link
+  Link,
 } from 'react-router-native';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {
+  setQuizes,
+  randomQuizes,
+} from '../ducks/app';
 
 
-export default () => (
+const Index = ({ history, setQuizes, quizes }) => (
   <View>
     <Image style={{width: 300, height: 200}} source={ require('../assets/logo.png') }></Image>
-    <Link to="/home" style={{
+    <TouchableOpacity activeOpacity={0.8} style={{
       marginTop: 10,
+    }} onPress={() => {
+      // console.log(typeof randomQuizes())
+      setQuizes(randomQuizes())
+      // console.log(() => )
+      history.push('/quiz');
     }}>
       <View style={{
         width: 300,
@@ -31,6 +42,14 @@ export default () => (
           fontWeight: 'bold',
         }}>Start</Text>
       </View>
-    </Link>
+    </TouchableOpacity>
   </View>
 )
+
+const mapStateToProps = state => ({
+  quizes: state.app.quizes,
+})
+
+export default withRouter(connect(mapStateToProps, {
+  setQuizes,
+})(Index));
