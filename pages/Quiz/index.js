@@ -25,11 +25,11 @@ const MainScreen = ({ quiz }) => (
   </View>
 )
 
-const QuizPage = ({ quizes, currentIndex }) => (
+const QuizPage = ({ history, quizes, currentIndex }) => (
   <View>
     <Top quizSize={quizes.length}/>
     <MainScreen quiz={quizes[currentIndex]}/>
-    <Navigation quizSize={quizes.length}/>
+    <Navigation history={history}/>
   </View>
 );
 
@@ -39,6 +39,4 @@ const mapStateToProps = state => ({
   currentIndex: state.app.currentIndex,
 })
 
-export default withRouter(connect(mapStateToProps, {
-
-})(QuizPage));
+export default withRouter(connect(mapStateToProps, {})(QuizPage));

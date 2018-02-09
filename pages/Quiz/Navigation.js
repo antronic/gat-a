@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   Text,
   TouchableOpacity,
   View,
@@ -10,6 +11,8 @@ import { connect } from 'react-redux';
 import {
   goBackQuiz,
   goNextQuiz,
+
+  checkAnswers,
 } from '../../ducks/app';
 
 const NavButton = ({ action, value }) => (
@@ -18,9 +21,9 @@ const NavButton = ({ action, value }) => (
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 70,
-    width: 70,
-    height: 70,
+    borderRadius: 60,
+    width: 60,
+    height: 60,
     marginLeft: 20,
     marginRight: 20,
   }} onPress={action}>
@@ -31,7 +34,7 @@ const NavButton = ({ action, value }) => (
   </TouchableOpacity>
 );
 
-const SubmitButton = () => (
+const SubmitButton = ({ history, quizes, selectedAnswer }) => (
   <TouchableOpacity activeOpacity={0.8} style={{
     width: '90%',
     height: 60,
@@ -39,12 +42,17 @@ const SubmitButton = () => (
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+  }} onPress={() => {
+    const result = checkAnswers(quizes, selectedAnswer);
+    Alert.alert('Your results', 'Your score is ' + result.score, [
+      {text: 'OK', onPress: () => history.replace('/')},
+    ], { cancelable: false })
   }}>
     <Text style={{ color: '#4174c3', fontWeight: 'bold', fontSize: 22 }}>Submit</Text>
   </TouchableOpacity>
 );
 
-const Navigation = ({ goBackQuiz, goNextQuiz, currentIndex, quizSize  }) => (
+const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, selectedAnswer  }) => (
   <View style={{
     flex: 2,
     width: '100%',
@@ -66,7 +74,9 @@ const Navigation = ({ goBackQuiz, goNextQuiz, currentIndex, quizSize  }) => (
       flex: 1,
       alignItems: 'center',
     }}>
-      <SubmitButton/>
+      {
+        Object.keys(selectedAnswer).length === (Number(quizes.length)) && (<SubmitButton history={history} selectedAnswer={selectedAnswer} quizes={quizes}/>)
+      }
     </View>
 
     <View style={{
@@ -74,7 +84,7 @@ const Navigation = ({ goBackQuiz, goNextQuiz, currentIndex, quizSize  }) => (
       alignItems: 'flex-end',
     }}>
       {
-        currentIndex < quizSize - 1 && ( <NavButton type="next" action={goNextQuiz} value=">"/> )
+        currentIndex < quizes.length - 1 && ( <NavButton type="next" action={goNextQuiz} value=">"/> )
       }
     </View>
   </View>
@@ -82,6 +92,8 @@ const Navigation = ({ goBackQuiz, goNextQuiz, currentIndex, quizSize  }) => (
 
 const mapStateToProps = state => ({
   currentIndex: state.app.currentIndex,
+  selectedAnswer: state.app.selectedAnswer,
+  quizes: state.app.quizes,
 });
 
 export default connect(mapStateToProps, { goNextQuiz, goBackQuiz })(Navigation);

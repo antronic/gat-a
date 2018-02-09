@@ -44,7 +44,15 @@ export const randomQuizes = () => {
 }
 
 export const checkAnswers = (quizes, answers) => {
-  return quizes.map(q => q.solve === answers)
+  let correct = 0;
+  return {
+    result: quizes.map((q, index) => {
+      const result = q.solve === answers[index];
+      correct += result ? 1 : 0;
+      return result;
+    }),
+    score: correct,
+  }
 }
 
 export function* appWatcherSaga() {

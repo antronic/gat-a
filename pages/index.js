@@ -23,9 +23,7 @@ const Index = ({ history, setQuizes, quizes }) => (
     <TouchableOpacity activeOpacity={0.8} style={{
       marginTop: 10,
     }} onPress={() => {
-      // console.log(typeof randomQuizes())
       setQuizes(randomQuizes())
-      // console.log(() => )
       history.push('/quiz');
     }}>
       <View style={{
