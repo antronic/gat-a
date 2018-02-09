@@ -47,7 +47,7 @@ export const checkAnswers = (quizes, answers) => {
   let correct = 0;
   return {
     result: quizes.map((q, index) => {
-      const result = q.solve === answers[index];
+      const result = parseInt(q.solve, 10) === answers[index];
       correct += result ? 1 : 0;
       return result;
     }),
