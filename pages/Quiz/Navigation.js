@@ -72,7 +72,7 @@ const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, sel
       alignItems: 'flex-start',
     }}>
       {
-        currentIndex > 0 && ( <NavButton type="back" action={goBackQuiz} value="<"/> )
+        currentIndex > 0 && ( <NavButton type="back" action={goBackQuiz} value="◄"/> )
       }
     </View>
 
@@ -90,7 +90,7 @@ const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, sel
       alignItems: 'flex-end',
     }}>
       {
-        currentIndex < quizes.length - 1 && ( <NavButton type="next" action={goNextQuiz} value=">"/> )
+        (currentIndex < quizes.length - 1) && (Object.hasOwnProperty.call(selectedAnswer, currentIndex)) && ( <NavButton type="next" action={goNextQuiz} value="►"/> )
       }
     </View>
   </View>
