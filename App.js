@@ -11,6 +11,7 @@ import store from './ducks';
 import Main from './pages/index';
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
+import Result from './pages/Result';
 
 // react-native
 import {
@@ -36,6 +37,7 @@ const App = class App extends React.Component {
               <Route exact path="/" component={Main}/>
               <Route path="/home" component={Home}/>
               <Route path="/quiz" component={Quiz}/>
+              <Route path="/result" component={Result}/>
             </LinearGradient>
           </View>
         </NativeRouter>

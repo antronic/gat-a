@@ -13,6 +13,7 @@ import Top from './Top';
 import Navigation from './Navigation';
 
 import Card from '../../components/Card';
+import AnswerGroup from '../../components/AnswerGroup';
 
 function listQuiz(quiz) {
   return <Card quiz={quiz}/>

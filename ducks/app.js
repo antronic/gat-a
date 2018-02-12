@@ -26,6 +26,7 @@ export const GO_BACK_QUIZ = APP('GO_BACK_QUIZ');
 export const GO_NEXT_QUIZ = APP('GO_NEXT_QUIZ');
 
 export const SET_QUIZES = APP('SET_QUIZES');
+export const SET_RESULT = APP('SET_RESULT');
 
 export const RESET_ANSWER = APP('RESET_ANSWER');
 
@@ -37,6 +38,8 @@ export const goBackQuiz = Creator(GO_BACK_QUIZ);
 export const goNextQuiz = Creator(GO_NEXT_QUIZ);
 
 export const setQuizIndex = Creator(SET_QUIZ_INDEX);
+
+export const setResult = Creator(SET_RESULT);
 
 
 export const randomQuizes = () => {
@@ -63,6 +66,7 @@ const initial = {
   saveSolve: {},
 
   currentIndex: 0,
+  result: {},
   quizes: [],
 }
 
@@ -96,4 +100,9 @@ export default createReducer(initial, state => ({
     ...state,
     currentIndex,
   }),
+
+  [SET_RESULT]: result => ({
+    ...state,
+    result,
+  })
 }))

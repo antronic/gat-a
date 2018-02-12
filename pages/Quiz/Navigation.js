@@ -14,6 +14,8 @@ import {
 
   checkAnswers,
   setQuizIndex,
+
+  setResult,
   resetAnswer,
 } from '../../ducks/app';
 
@@ -36,7 +38,7 @@ const NavButton = ({ action, value }) => (
   </TouchableOpacity>
 );
 
-const SubmitButton = ({ history, quizes, selectedAnswer }) => (
+const SubmitButton = ({ history, quizes, selectedAnswer, setResult }) => (
   <TouchableOpacity activeOpacity={0.8} style={{
     width: '90%',
     height: 60,
@@ -48,8 +50,10 @@ const SubmitButton = ({ history, quizes, selectedAnswer }) => (
     const result = checkAnswers(quizes, selectedAnswer);
     Alert.alert('Your results', 'Your score is ' + result.score, [
       {text: 'OK', onPress: () => {
-        history.replace('/');
-        resetAnswer();
+        history.replace('/result');
+        // resetAnswer();
+
+        setResult(result);
         setQuizIndex(0);
       }},
     ], { cancelable: false })
@@ -58,7 +62,7 @@ const SubmitButton = ({ history, quizes, selectedAnswer }) => (
   </TouchableOpacity>
 );
 
-const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, selectedAnswer  }) => (
+const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, selectedAnswer, setResult  }) => (
   <View style={{
     flex: 2,
     width: '100%',
@@ -81,7 +85,7 @@ const Navigation = ({ history, goBackQuiz, goNextQuiz, currentIndex, quizes, sel
       alignItems: 'center',
     }}>
       {
-        Object.keys(selectedAnswer).length === (Number(quizes.length)) && (<SubmitButton history={history} selectedAnswer={selectedAnswer} quizes={quizes}/>)
+        Object.keys(selectedAnswer).length === (Number(quizes.length)) && (<SubmitButton setResult={setResult} history={history} selectedAnswer={selectedAnswer} quizes={quizes}/>)
       }
     </View>
 
@@ -102,4 +106,4 @@ const mapStateToProps = state => ({
   quizes: state.app.quizes,
 });
 
-export default connect(mapStateToProps, { goNextQuiz, goBackQuiz })(Navigation);
+export default connect(mapStateToProps, { goNextQuiz, goBackQuiz, setResult })(Navigation);
